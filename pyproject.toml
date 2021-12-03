@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "pagode"
+version = "0.0.0"
+description = "A tool for pair programming"
+authors = ["Paul Reiter <reiter.paul@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+impacket = "^0.9.24"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[tool.poetry.scripts]
+pagode = "pagode.main:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
