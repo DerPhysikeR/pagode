@@ -1,5 +1,6 @@
 import argparse
 from pathlib import Path
+import threading
 from impacket import smbserver
 
 
@@ -7,12 +8,13 @@ def create_samba_server(directory):
     server = smbserver.SimpleSMBServer(listenPort=5000)
     server.setSMB2Support(True)
     server.addShare("code", str(directory))
-    return server
+    server.start()
 
 
 def start_share(directory):
-    smb_server = create_samba_server(directory)
-    smb_server.start()
+    samba_thread = threading.Thread(target=create_samba_server, args=(directory,))
+    samba_thread.start()
+    print("test")
 
 
 def main():
