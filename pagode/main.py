@@ -12,9 +12,11 @@ def create_samba_server(directory):
 
 
 def start_share(directory):
-    samba_thread = threading.Thread(target=create_samba_server, args=(directory,))
+    samba_thread = threading.Thread(
+        target=create_samba_server, args=(directory,), daemon=True
+    )
     samba_thread.start()
-    print("test")
+    return samba_thread
 
 
 def main():
@@ -28,7 +30,7 @@ def main():
     directory = Path(args.dir).resolve()
     if not directory.is_dir():
         raise ValueError(f"The given path is not a directory '{directory}'")
-    start_share(directory)
+    samba_thread = start_share(directory)
 
 
 if __name__ == "__main__":
