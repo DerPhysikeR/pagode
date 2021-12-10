@@ -13,7 +13,7 @@ def create_samba_server(directory):
 
 def start_share(directory):
     samba_thread = threading.Thread(
-        target=create_samba_server, args=(directory,), daemon=True
+        target=create_samba_server, args=(directory,)
     )
     samba_thread.start()
     return samba_thread
